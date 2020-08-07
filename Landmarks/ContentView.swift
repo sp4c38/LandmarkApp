@@ -12,7 +12,6 @@ import MapKit
 
 struct ContentView: View {
     @ObservedObject var landmark_data = MapData()
-    @State var m = true
     
     var body: some View {
         
@@ -26,7 +25,6 @@ struct ContentView: View {
                 if landmark_data.isCentered == false {
                     Button(action: {
                         self.landmark_data.recenterMap()
-                        m.toggle()
                     }) {
                         HStack(spacing: 5) {
                             Image("marker_image")
