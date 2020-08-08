@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 
 
-struct ContentView: View {
+struct LandmarkInfo: View {
     @ObservedObject var landmark_data = MapData()
     
     var body: some View {
@@ -76,7 +76,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LandmarkInfo()
     }
 }
 
