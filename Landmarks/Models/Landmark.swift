@@ -11,8 +11,8 @@ import SwiftUI
 
 // Create a new structure which stores data for a landmark
 
-struct Landmark: Hashable, Codable {
-    var id: Int
+struct Landmark: Hashable, Codable, Identifiable {
+    var id: Int // Required to met Identifiable protocol
     var name: String
     fileprivate var imageName: String
     fileprivate var coordinates: Coordinates
@@ -27,6 +27,10 @@ struct Landmark: Hashable, Codable {
         CLLocationCoordinate2D(
             latitude: coordinates.latitude,
             longitude: coordinates.longitude)
+    }
+    
+    var span: MKCoordinateSpan { // Span of the Landmark Map View for correct in-out zoom
+        MKCoordinateSpan(latitudeDelta: 1.4, longitudeDelta: 2.0)
     }
     
     enum Category: String, CaseIterable, Codable, Hashable {

@@ -9,23 +9,44 @@
 import SwiftUI
 import MapKit
 
+class LandmarkData: ObservableObject {
+    @Published var isCentered: Bool = true
+    var map = MKMapView()
+    var landmark: Landmark
+    
+    init(with lmark: Landmark) {
+        landmark = lmark
+    }
+    
+    func recenterMap() {
+        map.setRegion(
+            MKCoordinateRegion(
+                center: landmark.locationCoordinate,
+                span: landmark.span
+            ), animated: true
+        )
+    }
+}
 
 struct LandmarkInfo: View {
-    @ObservedObject var landmark_data = MapData()
+    var landmark: Landmark
+    @ObservedObject var data: LandmarkData
     
-    var body: some View {
+    init(with lmark: Landmark) {
+        landmark = lmark
+        data = LandmarkData(with: landmark)
+    }
         
+    var body: some View {
         VStack {
             ZStack(alignment: .top) {
                 MapView(
-                    landmark_data: landmark_data
+                    data: data
                 )
                     .frame(height: 500)
                  
-                if landmark_data.isCentered == false {
-                    Button(action: {
-                        self.landmark_data.recenterMap()
-                    }) {
+                if data.isCentered == false {
+                    Button(action: data.recenterMap) {
                         HStack(spacing: 5) {
                             Image("marker_image")
                                 .resizable()
@@ -44,23 +65,25 @@ struct LandmarkInfo: View {
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(RecenterButton())
-                    .offset(y: 34)
+                    .offset(y: 124)
                     .transition(.asymmetric(insertion: .slide, removal: AnyTransition.opacity.animation(.easeOut)))
                 }
             }
             
-            CircleImageView()
+            CircleImageView(
+                image: landmark.image
+            )
                 .offset(y: -102)
                 .padding(.bottom, -90) // Add a little space to make space for the description beneath
             
             VStack(alignment: .leading) {
-                Text("Turtle Rock")
+                Text(landmark.name)
                     .font(.title)
                 
                 HStack {
-                    Text("Joshua Tree National Park")
+                    Text(landmark.park)
                     Spacer()
-                    Text("California")
+                    Text(landmark.state)
                 }.font(.subheadline)
         
             }
@@ -74,9 +97,9 @@ struct LandmarkInfo: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LandmarkInfo_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkInfo()
+        LandmarkList()
     }
 }
 

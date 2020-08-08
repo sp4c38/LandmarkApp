@@ -27,41 +27,15 @@ struct RecenterButton: ButtonStyle {
     }
 }
 
-class MapData: ObservableObject {
-    @Published var isCentered: Bool = true
-    
-    let coordinates = CLLocationCoordinate2D( // Coordinates for Landmark
-        latitude: 33.869007,
-        longitude: -115.837808
-    )
-    
-    let span = MKCoordinateSpan ( // Span of the Landmark Map View for correct in-out zoom
-        latitudeDelta: 1.4,
-        longitudeDelta: 2.0
-    )
-    
-    let landmark_marker = MKPointAnnotation()
-    
-    var region: MKCoordinateRegion { // Region which is displayed on first call which consists out of the center coordinates and the span
-        MKCoordinateRegion(center: coordinates, span: span)
-    }
-    
-    let landmark_map = MKMapView()
-    
-    func recenterMap() {
-        landmark_map.setRegion(region, animated: true) // animated must be true - otherwise the recenter button will not appear and disappear correctly
-    }
-}
-
-func collides(mapData: MapData, with point: CLLocationCoordinate2D) -> Bool {
+func collides(span: MKCoordinateSpan,coordinates: CLLocationCoordinate2D, with point: CLLocationCoordinate2D) -> Bool {
     var longitude_collides = false
     var latitude_collides = false
     
-    if (point.longitude >= (mapData.coordinates.longitude - (mapData.span.longitudeDelta / 2))) && (point.longitude <= (mapData.coordinates.longitude + (mapData.span.longitudeDelta / 2))) {
+    if (point.longitude >= (coordinates.longitude - (span.longitudeDelta / 2))) && (point.longitude <= (coordinates.longitude + (span.longitudeDelta / 2))) {
         longitude_collides = true
     }
     
-    if (point.latitude <= (mapData.coordinates.latitude + (mapData.span.latitudeDelta / 2))) && (point.latitude >= (mapData.coordinates.latitude - (mapData.span.latitudeDelta / 2))) {
+    if (point.latitude <= (coordinates.latitude + (span.latitudeDelta / 2))) && (point.latitude >= (coordinates.latitude - (span.latitudeDelta / 2))) {
         latitude_collides = true
     }
     
@@ -73,7 +47,11 @@ func collides(mapData: MapData, with point: CLLocationCoordinate2D) -> Bool {
 }
 
 struct MapView: UIViewRepresentable {
-    var landmark_data: MapData
+    var data: LandmarkData
+    
+    var region: MKCoordinateRegion { // Region which is displayed on first call which consists out of the center coordinates and the span
+        MKCoordinateRegion(center: data.landmark.locationCoordinate, span: data.landmark.span)
+    }
     
     // Create a Coordinator which is needed to connect a UIView instance to SwiftUI
     class Coordinator: NSObject, MKMapViewDelegate {
@@ -84,10 +62,12 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            if collides(mapData: parent.landmark_data, with: mapView.centerCoordinate) {
-                parent.landmark_data.isCentered = true
+            if collides(span: parent.data.landmark.span,
+                        coordinates: parent.data.landmark.locationCoordinate,
+                        with: mapView.centerCoordinate) {
+                parent.data.isCentered = true
             } else {
-                parent.landmark_data.isCentered = false
+                parent.data.isCentered = false
             }
         }
     }
@@ -97,20 +77,22 @@ struct MapView: UIViewRepresentable {
     }
  
     func makeUIView(context: Context) -> MKMapView {
-        landmark_data.landmark_map.isZoomEnabled = true
-        landmark_data.landmark_map.isScrollEnabled = true
-        landmark_data.landmark_map.isPitchEnabled = true
-        landmark_data.landmark_map.isRotateEnabled = true
-        landmark_data.landmark_map.delegate = context.coordinator
+        data.map.isZoomEnabled = true
+        data.map.isScrollEnabled = true
+        data.map.isPitchEnabled = true
+        data.map.isRotateEnabled = true
+        data.map.delegate = context.coordinator
         
-        return landmark_data.landmark_map
+        return data.map
     }
     
     // The "_" tells swift that the following argument is a positional argument and no keyword argument
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        landmark_data.landmark_map.setRegion(landmark_data.region, animated:true)
+        data.map.setRegion(region, animated:true)
         
-        landmark_data.landmark_marker.coordinate = landmark_data.coordinates
-        landmark_data.landmark_map.addAnnotation(landmark_data.landmark_marker)
+        let landmark_marker = MKPointAnnotation()
+        
+        landmark_marker.coordinate = data.landmark.locationCoordinate
+        data.map.addAnnotation(landmark_marker)
     }
 }
