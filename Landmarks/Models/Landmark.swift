@@ -22,6 +22,7 @@ struct Landmark: Hashable, Codable, Identifiable {
     var image: Image {
         ImageStore.shared.image(name: imageName)
     }
+    var isFavorite: Bool
     
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
@@ -37,6 +38,7 @@ struct Landmark: Hashable, Codable, Identifiable {
         case featured = "Featured"
         case lake = "Lakes"
         case rivers = "Rivers"
+        case mountains = "Mountains"
     }
 }
 

@@ -9,7 +9,7 @@
 import SwiftUI
 import MapKit
 
-class LandmarkData: ObservableObject {
+final class InfoData: ObservableObject {
     @Published var isCentered: Bool = true
     var map = MKMapView()
     var landmark: Landmark
@@ -30,11 +30,17 @@ class LandmarkData: ObservableObject {
 
 struct LandmarkInfo: View {
     var landmark: Landmark
-    @ObservedObject var data: LandmarkData
+    
+    @EnvironmentObject var userData: UserData
+    @ObservedObject var data: InfoData
+    
+    var landmarkIndex: Int {
+        userData.landmarks.firstIndex(where: { $0.id == landmark.id })! // Will find the first item in the userData.landmarks list which matches the lambda function in where: { function }. So this will find the index of the first item in userData.landmarks which matches the landmark parsed to this function
+    }
     
     init(with lmark: Landmark) {
         landmark = lmark
-        data = LandmarkData(with: landmark)
+        data = InfoData(with: landmark)
     }
         
     var body: some View {
@@ -90,21 +96,45 @@ struct LandmarkInfo: View {
             .padding(.leading, 36)
             .padding(.trailing, 36)
  
+            Button(action: {
+                self.userData.landmarks[self.landmarkIndex].isFavorite.toggle()
+            }) {
+                HStack {
+                    VStack {
+                        if self.userData.landmarks[self.landmarkIndex].isFavorite {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color.yellow)
+                        } else {
+                            Image(systemName: "star")
+                                .foregroundColor(Color.gray)
+                        }
+                    }
+                    .padding(10)
+                    .offset(x: 5)
+                    
+                    Text("Save as favorite")
+                        .padding(10)
+                        .foregroundColor(Color.white)
+                        .font(.headline)
+                        .offset(x: -5)
+                        
+                }
+            }.buttonStyle(FavoriteButton())
+            .padding()
+            
             Spacer()
             Spacer()
             
         }
         .edgesIgnoringSafeArea(.top)
-        .navigationBarTitle(Text(landmark.name), displayMode: .inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct LandmarkInfo_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            LandmarkInfo(with: allLandmarks[3])
-            LandmarkList()
-        }
+        LandmarkInfo(with: allLandmarks[3])
+            .environmentObject(UserData())
     }
 }
 

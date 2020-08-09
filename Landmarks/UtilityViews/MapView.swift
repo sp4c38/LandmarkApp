@@ -9,23 +9,6 @@
 import SwiftUI
 import MapKit
 
-struct RecenterButton: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .background(Color(hue: 0.5779, saturation: 1.0000, brightness: 0.9647))
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.white, lineWidth: 6)
-            )
-            .cornerRadius(12)
-            .shadow(radius: 10)
-            .padding()
-            .scaleEffect(configuration.isPressed ? 1.5 : 1.0)
-            .blur(radius: configuration.isPressed ? CGFloat(0.0) : 0)
-            .animation(Animation.spring(response: 0.25, dampingFraction: 0.3, blendDuration: 1))
-    }
-}
-
 func collides(span: MKCoordinateSpan,coordinates: CLLocationCoordinate2D, with point: CLLocationCoordinate2D) -> Bool {
     var longitude_collides = false
     var latitude_collides = false
@@ -46,7 +29,7 @@ func collides(span: MKCoordinateSpan,coordinates: CLLocationCoordinate2D, with p
 }
 
 struct MapView: UIViewRepresentable {
-    var data: LandmarkData
+    var data: InfoData
     
     var region: MKCoordinateRegion { // Region which is displayed on first call which consists out of the center coordinates and the span
         MKCoordinateRegion(center: data.landmark.locationCoordinate, span: data.landmark.span)
