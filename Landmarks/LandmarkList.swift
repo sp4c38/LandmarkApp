@@ -18,14 +18,10 @@ struct LandmarkList: View {
                     Text("Favorites only")
                 }
                 
-                ForEach(userData.landmarks) { landmark in // This will identify each element in  allLandmarks by its id which is already stored in each class
-                    HStack() {
-                        if landmark.isFavorite || !(userData.showFavoritesOnly) {
-                            VStack(alignment: .leading) {
-                                NavigationLink(destination: LandmarkInfo(with: landmark)){
-                                    LandmarkRow(landmark: landmark)
-                                }
-                            }
+                ForEach(userData.landmarks) { landmark in // This will identify each element in allLandmarks by its id which is already stored in each class
+                    if landmark.isFavorite || !(userData.showFavoritesOnly) {
+                        NavigationLink(destination: LandmarkInfo(with: landmark)){
+                            LandmarkRow(landmark: landmark)
                         }
                     }
                 }

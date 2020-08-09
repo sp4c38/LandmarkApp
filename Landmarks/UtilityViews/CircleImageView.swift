@@ -14,6 +14,7 @@ struct CircleImageView: View {
     var body: some View {
         VStack {
             image
+                .resizable()
                 .clipShape(Circle())
                 .overlay(
                     Circle().stroke(Color.white, lineWidth: 3))
@@ -26,6 +27,8 @@ struct CircleImageView: View {
 
 struct CircleImageView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleImageView(image: Image("chincoteague.jpg"))
+        CircleImageView(image: Image("charleyrivers.jpg"))
+            .previewLayout(.fixed(width: 300, height: 300))
+            .scaleEffect(6)
     }
 }

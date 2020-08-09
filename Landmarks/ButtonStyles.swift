@@ -14,6 +14,7 @@ struct FavoriteButton: ButtonStyle {
             .background(Color(hue: 1.0000, saturation: 0.7553, brightness: 1.0000))
             .cornerRadius(4)
             .shadow(radius: 12)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
     }
 }
 

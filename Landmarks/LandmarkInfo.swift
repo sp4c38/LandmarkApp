@@ -79,8 +79,9 @@ struct LandmarkInfo: View {
             CircleImageView(
                 image: landmark.image
             )
-                .offset(y: -102)
-                .padding(.bottom, -90) // Add a little space to make space for the description beneath
+                .frame(width: 210, height: 210)
+                .offset(y: -132)
+                .padding(.bottom, -112) // Add a little space to make space for the description beneath
             
             VStack(alignment: .leading) {
                 Text(landmark.name)
@@ -93,8 +94,8 @@ struct LandmarkInfo: View {
                 }.font(.subheadline)
         
             }
-            .padding(.leading, 36)
-            .padding(.trailing, 36)
+            .padding(.leading, 16)
+            .padding(.trailing, 16)
  
             Button(action: {
                 self.userData.landmarks[self.landmarkIndex].isFavorite.toggle()
@@ -112,15 +113,16 @@ struct LandmarkInfo: View {
                     .padding(10)
                     .offset(x: 5)
                     
-                    Text("Save as favorite")
+                    Text("Add to favorite")
                         .padding(10)
                         .foregroundColor(Color.white)
                         .font(.headline)
                         .offset(x: -5)
                         
                 }
-            }.buttonStyle(FavoriteButton())
-            .padding()
+            }
+                .buttonStyle(FavoriteButton())
+                .padding()
             
             Spacer()
             Spacer()
@@ -128,6 +130,12 @@ struct LandmarkInfo: View {
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(items: {
+            ToolbarItem(placement: .principal) {
+                Text(landmark.name)
+                    .font(.headline)
+            }
+        })
     }
 }
 

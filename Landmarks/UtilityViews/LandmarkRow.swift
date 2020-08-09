@@ -24,14 +24,12 @@ struct LandmarkRow: View {
                 .resizable()
                 .frame(width: 50, height: 50, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
-                .padding(.trailing, 10)
+                .padding(.trailing, 14)
             
             Text(landmark.name)
-                
-            .padding(.leading, 16)
-            .padding(.top, 5)
-            .padding(.trailing, 16)
-            .padding(.bottom, 5)
+                .padding(.top, 5)
+                .padding(.trailing, 16)
+                .padding(.bottom, 5)
             
             Spacer()
             
