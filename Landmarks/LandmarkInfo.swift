@@ -65,7 +65,7 @@ struct LandmarkInfo: View {
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(RecenterButton())
-                    .offset(y: 124)
+                    .offset(y: 79)
                     .transition(.asymmetric(insertion: .slide, removal: AnyTransition.opacity.animation(.easeOut)))
                 }
             }
@@ -93,13 +93,18 @@ struct LandmarkInfo: View {
             Spacer()
             Spacer()
             
-        }.edgesIgnoringSafeArea(.top)
+        }
+        .edgesIgnoringSafeArea(.top)
+        .navigationBarTitle(Text(landmark.name), displayMode: .inline)
     }
 }
 
 struct LandmarkInfo_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkList()
+        Group {
+            LandmarkInfo(with: allLandmarks[3])
+            LandmarkList()
+        }
     }
 }
 

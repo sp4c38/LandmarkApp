@@ -21,3 +21,11 @@ struct CircleImageView: View {
         }
     }
 }
+
+
+
+struct CircleImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImageView(image: Image("chincoteague.jpg"))
+    }
+}

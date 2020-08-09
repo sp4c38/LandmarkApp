@@ -12,7 +12,6 @@ import MapKit
 struct RecenterButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(.white)
             .background(Color(hue: 0.5779, saturation: 1.0000, brightness: 0.9647))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
