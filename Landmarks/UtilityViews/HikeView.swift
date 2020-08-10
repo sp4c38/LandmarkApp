@@ -12,7 +12,7 @@ struct HikeView: View {
     var hike: Hike
 
     var body: some View {
-        Text(hike.distanceText)
+        HikeGraph(hike: hike, path: \.elevation)
     }
 }
 

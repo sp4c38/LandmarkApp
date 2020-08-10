@@ -44,6 +44,7 @@
 		61DBE6CB24E12B6E004F825E /* HexagonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DBE6CA24E12B6E004F825E /* HexagonParameters.swift */; };
 		61E9DDFF24DED60F004FB671 /* LandmarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E9DDFE24DED60F004FB671 /* LandmarkList.swift */; };
 		61EAADF924E05D600049619E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EAADF824E05D600049619E /* ButtonStyles.swift */; };
+		61FF29B624E1C9D200011BCF /* GraphCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FF29B524E1C9D200011BCF /* GraphCapsule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		61DBE6CA24E12B6E004F825E /* HexagonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonParameters.swift; sourceTree = "<group>"; };
 		61E9DDFE24DED60F004FB671 /* LandmarkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkList.swift; sourceTree = "<group>"; };
 		61EAADF824E05D600049619E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		61FF29B524E1C9D200011BCF /* GraphCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCapsule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				61EAADF824E05D600049619E /* ButtonStyles.swift */,
 				612147F224E173CA00A874BB /* HikeView.swift */,
 				612147F824E179B900A874BB /* HikeGraph.swift */,
+				61FF29B524E1C9D200011BCF /* GraphCapsule.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				61DBE6CB24E12B6E004F825E /* HexagonParameters.swift in Sources */,
 				6130819A24DD84BF00C60DF5 /* Landmark.swift in Sources */,
 				6182C3A424DFDB90001510DB /* UserData.swift in Sources */,
+				61FF29B624E1C9D200011BCF /* GraphCapsule.swift in Sources */,
 				610F692A24DDB196004614A6 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
