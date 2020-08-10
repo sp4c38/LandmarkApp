@@ -16,7 +16,7 @@ struct Hike: Hashable, Codable, Identifiable {
     var observations: [Observation]
     
     var distanceText: String {
-        return LengthFormatter()
+        LengthFormatter()
             .string(fromValue: distance, unit: .kilometer)
     }
     
