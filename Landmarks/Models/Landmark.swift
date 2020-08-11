@@ -23,6 +23,7 @@ struct Landmark: Hashable, Codable, Identifiable {
         ImageStore.shared.image(name: imageName)
     }
     var isFavorite: Bool
+    var isFeatured: Bool
     
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(

@@ -59,6 +59,9 @@ struct HikeView: View {
                     .transition(.moveAndFade) // By default a view fades in and out when it appears or is removed (transition). With the .transition method the transition can be modified
                     .animation(.ripple())
             }
+            
+           Spacer()
+            
         }   .animation(.easeIn(duration: 0.5))
             .padding()
     }
@@ -66,6 +69,6 @@ struct HikeView: View {
 
 struct HikeView_Previews: PreviewProvider {
     static var previews: some View {
-        HikeView(hike: allHikes[4])
+        HikeView(hike: allHikes[0])
     }
 }

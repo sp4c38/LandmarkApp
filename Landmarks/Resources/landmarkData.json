@@ -5,6 +5,7 @@
         "city": "Twentynine Palms",
         "state": "California",
         "id": 1001,
+        "isFeatured": true,
         "isFavorite": true,
         "park": "Joshua Tree National Park",
         "coordinates": {
@@ -19,6 +20,7 @@
         "city": "Port Alsworth",
         "state": "Alaska",
         "id": 1002,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "Lake Clark National Park and Preserve",
         "coordinates": {
@@ -33,6 +35,7 @@
         "city": "Skagway",
         "state": "Alaska",
         "id": 1003,
+        "isFeatured": false,
         "isFavorite": true,
         "park": "Klondike Gold Rush National Historical Park",
         "coordinates": {
@@ -47,6 +50,7 @@
         "city": "Browning",
         "state": "Montana",
         "id": 1004,
+        "isFeatured": true,
         "isFavorite": true,
         "park": "Glacier National Park",
         "coordinates": {
@@ -61,6 +65,7 @@
         "city": "Twin Lakes",
         "state": "Alaska",
         "id": 1005,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "Lake Clark National Park and Preserve",
         "coordinates": {
@@ -75,6 +80,7 @@
         "city": "West Glacier",
         "state": "Montana",
         "id": 1006,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "Glacier National Park",
         "coordinates": {
@@ -89,6 +95,7 @@
         "city": "Eaking",
         "state": "Alaska",
         "id": 1007,
+        "isFeatured": true,
         "isFavorite": false,
         "park": "Charley Rivers National Preserve",
         "coordinates": {
@@ -103,6 +110,7 @@
         "city": "Icy Bay",
         "state": "Alaska",
         "id": 1008,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "Wrangell-St. Elias National Park and Preserve",
         "coordinates": {
@@ -117,6 +125,7 @@
         "city": "Willow",
         "state": "Alaska",
         "id": 1009,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "State Recreation Area",
         "coordinates": {
@@ -131,6 +140,7 @@
         "city": "Newhalem",
         "state": "Washington",
         "id": 1010,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "North Cascades National Park",
         "coordinates": {
@@ -145,6 +155,7 @@
         "city": "Chincoteague",
         "state": "Virginia",
         "id": 1011,
+        "isFeatured": false,
         "isFavorite": false,
         "park": "Chincoteague National Wildlife Refuge",
         "coordinates": {
@@ -159,6 +170,7 @@
         "city": "Errol",
         "state": "New Hampshire",
         "id": 1012,
+        "isFeatured": true,
         "isFavorite": false,
         "park": "Umbagog National Wildlife Refuge",
         "coordinates": {
