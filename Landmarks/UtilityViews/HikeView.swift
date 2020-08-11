@@ -13,29 +13,33 @@ struct HikeView: View {
     @State private var showDetail = false
 
     var body: some View {
-        HStack {
-            HikeGraph(hike: hike, path: \.elevation)
-                .frame(width: 50, height: 50)
-                .animation(nil)
+        VStack(spacing: 70) {
+            HStack {
+                HikeGraph(hike: hike, path: \.elevation)
+                    .frame(width: 50, height: 50)
+                    .animation(nil)
             
-            VStack(alignment: .leading) {
-                Text(hike.name)
-                    .font(.headline)
-                Text(hike.distanceText)
+                VStack(alignment: .leading) {
+                    Text(hike.name)
+                        .font(.headline)
+                    Text(hike.distanceText)
+                }
+            
+                Spacer()
+            
+                Button(action: {
+                    self.showDetail.toggle()
+                }) {
+                    Image(systemName: "chevron.right.circle")
+                        .imageScale(.large)
+                        .rotationEffect(.degrees(showDetail ? 90 : 0))
+                        .padding()
+                }
             }
             
-            Spacer()
-            
-            Button(action: {
-                self.showDetail.toggle()
-            }) {
-                Image(systemName: "chevron.right.circle")
-                    .imageScale(.large)
-                    .rotationEffect(.degrees(showDetail ? 90 : 0))
-                    .padding()
+            if showDetail {
+                HikeDetail(hike: hike)
             }
-            
-
         }
     }
 }

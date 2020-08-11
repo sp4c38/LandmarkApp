@@ -31,7 +31,7 @@ struct HikeGraph: View {
     var color: Color {
         switch path {
             case \.elevation:
-                return Color.gray
+                return Color(hue: 1.0000, saturation: 0.4979, brightness: 0.4489)
             case \.heartRate:
                 return Color(hue: 0, saturation: 0.5, brightness: 0.7)
             case \.pace:
@@ -77,6 +77,7 @@ struct HikeGraph_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             HikeGraph(hike: allHikes[0], path: \.elevation)
+            HikeDetail(hike: allHikes[0])
         }
     }
 }
