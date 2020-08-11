@@ -12,7 +12,7 @@ struct Profile {
     var username: String
     var prefersNotification: Bool
     var seasonalPhoto: Season
-    var goalData: Date
+    var goalDate: Date
 
     // default is a keyword in Swift. To ignore that keyword the two `` are needed.
     static let `default` = Self(username: "g_kumar", prefersNotification: true, seasonalPhoto: .winter)
@@ -21,7 +21,7 @@ struct Profile {
         self.username = username
         self.prefersNotification = prefersNotification
         self.seasonalPhoto = seasonalPhoto
-        self.goalData = Date()
+        self.goalDate = Date()
     }
     
     enum Season: String, CaseIterable {
