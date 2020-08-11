@@ -8,6 +8,13 @@
 
 import SwiftUI
 
+extension Animation {
+    static func ripple() -> Animation {
+        Animation.spring(dampingFraction: 0.4)
+            .speed(2)
+    }
+}
+
 func rangeOfRanges<C: Collection>(ranges: C) -> Range<Double>
     where C.Element == Range<Double> {
 
@@ -78,6 +85,7 @@ struct HikeGraph_Previews: PreviewProvider {
         Group {
             HikeGraph(hike: allHikes[0], path: \.elevation)
             HikeDetail(hike: allHikes[0])
+            HikeView(hike: allHikes[0])
         }
     }
 }
