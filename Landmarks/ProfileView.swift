@@ -68,6 +68,7 @@ struct ProfileSummary: View {
             VStack(spacing: editModeEnabled ? 40 : 20) { // Stack for Settings Section
                 if editModeEnabled {
                     ProfileSettingsView(key: "Name:", value: profile.username, editModeEnabled: editModeEnabled, profile: $profile)
+                        .transition(.moveAndFade)
                 }
                 ProfileSettingsView(key: "Notifications:", value: profile.prefersNotification ? "On" : "Off", editModeEnabled: editModeEnabled, profile: $profile)
                 ProfileSettingsView(key: "Seasonal Photo:", value: profile.seasonalPhoto.rawValue, editModeEnabled: editModeEnabled, profile: $profile)
@@ -103,7 +104,7 @@ struct ProfileHost: View {
 
             
         }
-        .animation(.easeIn(duration: 0.5))
+        .animation(.easeInOut(duration: 0.5))
         .padding(.trailing, 10)
         .padding(.top, 20)
     }
