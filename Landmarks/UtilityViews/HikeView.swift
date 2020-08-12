@@ -35,7 +35,9 @@ struct HikeView: View {
             HStack {
                 HikeGraph(hike: hike, path: \.elevation)
                     .frame(width: 50, height: 50)
-            
+                    .padding(.trailing, 20)
+                    .offset(y: 5)
+                
                 VStack(alignment: .leading) {
                     Text(hike.name)
                         .font(.headline)
@@ -45,7 +47,6 @@ struct HikeView: View {
                 Spacer()
             
                 Button(action: {
-                    //withAnimation(.easeIn(duration: 2)) { // Will affect all views which are toggled when showDetail changes. Those are the expand button and the HikeDetail view
                     impact.impactOccurred()
                     self.showDetail.toggle()
                     //}
@@ -62,11 +63,9 @@ struct HikeView: View {
                 HikeDetail(hike: hike)
                     .transition(.moveAndFade) // By default a view fades in and out when it appears or is removed (transition). With the .transition method the transition can be modified
                     .animation(.ripple())
-                    .padding(.bottom, 60)
             }
-           Spacer()
         }
-        .padding()
+        .padding().padding(.bottom, -16) // Add padding to all edges except of the bottom
     }
 }
 
