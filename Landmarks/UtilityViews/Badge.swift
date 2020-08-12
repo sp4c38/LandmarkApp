@@ -12,11 +12,15 @@ struct HikeBadge: View {
     var name: String
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Badge()
                 .frame(width: 300, height: 300)
                 .scaleEffect(1/3)
                 .frame(width: 100, height: 100) // Second frame sets the badge again to the correct size because the scaleEffect was applied
+                .brightness(0.04)
+            Text(name)
+                .font(.caption)
+                .accessibility(label: Text("Badge for \(name)"))
         }
     }
 }

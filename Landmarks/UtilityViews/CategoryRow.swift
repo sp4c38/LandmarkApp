@@ -8,30 +8,6 @@
 
 import SwiftUI
 
-struct CategoryRow: View {
-    var rowLandmarks: [Landmark]
-    var categoryName: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(categoryName)
-                .font(.headline)
-                .padding(.leading, 12)
-                .padding(.top, 10)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
-                    ForEach(rowLandmarks) { landmark in
-                        NavigationLink(destination: LandmarkInfo(with: landmark)) {
-                            CategoryItem(landmark: landmark)
-                        }
-                    }
-                }.frame(height: 185)
-            }
-        }
-    }
-}
-
 struct CategoryItem: View {
     var landmark: Landmark
     
@@ -49,6 +25,30 @@ struct CategoryItem: View {
             }
         }
         .padding(.leading, 15)
+    }
+}
+
+struct CategoryRow: View {
+    var rowLandmarks: [Landmark]
+    var categoryName: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(categoryName)
+                .font(.headline)
+                .padding(.leading, 12)
+                .padding(.top, 10)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0) {
+                    ForEach(rowLandmarks) { landmark in
+                        NavigationLink(destination: LandmarkInfo(with: landmark)) {
+                            CategoryItem(landmark: landmark)
+                        }
+                    }
+                }.frame(height: 185)
+            }
+        }
     }
 }
 

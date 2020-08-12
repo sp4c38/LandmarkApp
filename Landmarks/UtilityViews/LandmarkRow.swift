@@ -20,6 +20,7 @@ struct LandmarkRow: View {
     
     var body: some View {
         HStack {
+
             landmark.image
                 .resizable()
                 .frame(width: 50, height: 50, alignment: .center)
@@ -30,7 +31,8 @@ struct LandmarkRow: View {
                 .padding(.top, 5)
                 .padding(.trailing, 16)
                 .padding(.bottom, 5)
-            
+
+                
             Spacer()
             
             Button(action: {
@@ -56,7 +58,10 @@ struct LandmarkRow_Previews: PreviewProvider {
             LandmarkRow(landmark: allLandmarks[2])
             LandmarkRow(landmark: allLandmarks[4])
         }.previewLayout(.fixed(width: 400, height: 70))
-        LandmarkList()
-            .environmentObject(UserData())
+        
+        NavigationView {
+            LandmarkList()
+                .environmentObject(UserData())
+        }
     }
 }

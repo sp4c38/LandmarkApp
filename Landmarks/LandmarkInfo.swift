@@ -43,6 +43,8 @@ struct LandmarkInfo: View {
         data = InfoData(with: landmark)
     }
         
+    let impact = UIImpactFeedbackGenerator(style: .light)
+    
     var body: some View {
         VStack {
             ZStack(alignment: .top) {
@@ -52,7 +54,10 @@ struct LandmarkInfo: View {
                     .frame(height: 500)
                  
                 if data.isCentered == false {
-                    Button(action: data.recenterMap) {
+                    Button(action: {
+                        self.data.recenterMap()
+                        impact.impactOccurred()
+                    }) {
                         HStack(spacing: 5) {
                             Image("marker_image")
                                 .resizable()
@@ -70,8 +75,8 @@ struct LandmarkInfo: View {
                         .offset(x: -4)
                         .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(RecenterButton())
                     .offset(y: 79)
+                    .buttonStyle(RecenterButton())
                     .transition(.asymmetric(insertion: .slide, removal: AnyTransition.opacity.animation(.easeOut)))
                 }
             }
@@ -99,6 +104,7 @@ struct LandmarkInfo: View {
  
             Button(action: {
                 self.userData.landmarks[self.landmarkIndex].isFavorite.toggle()
+                impact.impactOccurred()
             }) {
                 HStack {
                     VStack {

@@ -32,6 +32,8 @@ struct CategoryHome: View {
         }
     }
     
+    let impact = UIImpactFeedbackGenerator(style: .light)
+    
     var body: some View {
         NavigationView() {
             List {
@@ -44,6 +46,7 @@ struct CategoryHome: View {
                         categoryName: cate
                     )
                 }.listRowInsets(EdgeInsets())
+                
                 NavigationLink(destination: LandmarkList()) {
                     Text("See all")
                 }
@@ -53,6 +56,9 @@ struct CategoryHome: View {
         }
         .sheet(isPresented: $showProfile) {
             ProfileHost()
+                .onAppear(perform: {
+                    impact.impactOccurred()
+                })
         }
     }
 }

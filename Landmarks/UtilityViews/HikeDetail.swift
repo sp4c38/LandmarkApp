@@ -14,8 +14,8 @@ struct HikeDetail: View {
     
     var buttons = [
         ("Elevation", \Hike.Observation.elevation),
-        ("Heart Rate", \Hike.Observation.heartRate),
         ("Pace", \Hike.Observation.pace),
+        ("Heart Rate", \Hike.Observation.heartRate),
     ]
     
     var body: some View {
@@ -30,11 +30,11 @@ struct HikeDetail: View {
                         self.dataToShow = value.1
                     }) {
                         Text(value.0)
-                            .font(.system(size: 15))
+                            .font(.headline)
+                            .bold()
                             .foregroundColor(value.1 == dataToShow ?
                                 Color.gray :
-                                Color.accentColor)
-                            .animation(nil)
+                                Color.black)
                     }
                 }
             }

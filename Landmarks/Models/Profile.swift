@@ -15,7 +15,7 @@ struct Profile {
     var goalDate: Date
 
     // default is a keyword in Swift. To ignore that keyword the two `` are needed.
-    static let `default` = Self(username: "g_kumar", prefersNotification: true, seasonalPhoto: .winter)
+    static let `default` = Self(username: "sp4c38", prefersNotification: true, seasonalPhoto: .spring)
     
     init(username: String, prefersNotification: Bool = true, seasonalPhoto: Season = .spring) {
         self.username = username
